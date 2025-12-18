@@ -1,0 +1,21 @@
+# Core numerical and serialization dependencies
+numpy==1.21.6
+numexpr==2.8.4
+h5py==3.8.0
+protobuf==3.20.1
+
+# Computer vision and GUI runtime
+opencv-python==4.8.0.74
+opencv-contrib-python==4.8.0.74
+PyQt6==6.5.1
+
+# Inference runtimes
+onnx==1.14.0
+# Default CPU runtime; swap for GPU/DirectML variants as needed.
+onnxruntime==1.15.1
+# onnxruntime-gpu==1.15.1
+# onnxruntime-directml==1.15.1
+
+# Training stack (used by trainers under apps/trainers and modelhub/torch)
+torch==1.13.1
+torchvision==0.14.1

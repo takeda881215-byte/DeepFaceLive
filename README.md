@@ -58,6 +58,17 @@ examples
 
 </table>
 
+
+## Running from source
+
+If you prefer to run DeepFaceLive directly from this repository instead of using the prebuilt Windows packages, install the Python dependencies and pick the correct hardware runtime:
+
+- Install Python 3.8+ and run `pip install -r requirements.txt`.
+- Choose the ONNX Runtime variant that matches your hardware (CPU, CUDA, or DirectML) by editing the commented options in `requirements.txt` before installation.
+- For CUDA-enabled PyTorch wheels, you may need to point pip at the [official PyTorch download index](https://download.pytorch.org/whl/cu117) to match your GPU toolkit.
+
+See `doc/OPTIMIZATION_NOTES.md` for performance-focused recommendations when customizing the pipeline.
+
 <table align="center" border="0">
 <tr><td align="center">
 Bryan Greynolds
@@ -387,6 +398,5 @@ bitcoin:bc1qewl062v70rszulml3f0mjdjrys8uxdydw3v6rq
 -->
 
 </table>
-
 
 
