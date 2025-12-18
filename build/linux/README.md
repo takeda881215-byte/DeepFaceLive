@@ -2,8 +2,8 @@
 
 ### Requirements
 
-* nvidia-driver-470 (current)
-* cuda 11.4 (current)
+* NVIDIA driver compatible with CUDA 11.8 (e.g., 520+)
+* CUDA 11.8 runtime with Torch 1.13.1+cu118 and Torchvision 0.14.1+cu118
 
 ### Setup
 
