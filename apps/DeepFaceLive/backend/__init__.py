@@ -11,4 +11,5 @@ from .FaceSwapInsight import FaceSwapInsight
 from .FaceSwapDFM import FaceSwapDFM
 from .FileSource import FileSource
 from .FrameAdjuster import FrameAdjuster
-from .StreamOutput import StreamOutput
+from .VirtualCameraOutput import VirtualCameraOutput
+from .StreamOutput import OutputTarget, StreamOutput

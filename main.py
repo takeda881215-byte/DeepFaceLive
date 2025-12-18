@@ -1,6 +1,7 @@
 import argparse
 import os
 import platform
+import sys
 from pathlib import Path
 
 from xlib import appargs as lib_appargs
@@ -24,7 +25,26 @@ from xlib import os as lib_os
 # code.interact(local=dict(globals(), **locals()))
 
 
-def main():
+def _default_userdata_dir() -> Path:
+    return Path(os.environ.get('DEEPLIVELIVE_USERDATA', Path(__file__).resolve().parent / 'userdata')).expanduser()
+
+
+def _ensure_userdata(path: Path) -> Path:
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+
+    # Zero-argument shortcut for one-click start.
+    if len(argv) == 0:
+        lib_appargs.set_arg_bool('NO_CUDA', False)
+        from apps.DeepFaceLive.DeepFaceLiveApp import DeepFaceLiveApp
+        DeepFaceLiveApp(userdata_path=_ensure_userdata(_default_userdata_dir())).run()
+        return
+
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
 
@@ -32,7 +52,8 @@ def main():
     run_subparsers = run_parser.add_subparsers()
 
     def run_DeepFaceLive(args):
-        userdata_path = Path(args.userdata_dir)
+        userdata_path = _default_userdata_dir() if args.userdata_dir is None else Path(args.userdata_dir)
+        userdata_path = _ensure_userdata(userdata_path)
         lib_appargs.set_arg_bool('NO_CUDA', args.no_cuda)
 
         print('Running DeepFaceLive.')
