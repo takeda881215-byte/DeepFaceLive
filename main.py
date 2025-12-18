@@ -26,7 +26,12 @@ from xlib import os as lib_os
 
 
 def _default_userdata_dir() -> Path:
-    return Path(os.environ.get('DEEPLIVELIVE_USERDATA', Path(__file__).resolve().parent / 'userdata')).expanduser()
+    env_userdata_dir = (
+        os.environ.get("DEEPFACELIVE_USERDATA")
+        or os.environ.get("DEEPLIVELIVE_USERDATA")
+    )
+    default_dir = Path(__file__).resolve().parent / "userdata"
+    return Path(env_userdata_dir or default_dir).expanduser()
 
 
 def _ensure_userdata(path: Path) -> Path:
