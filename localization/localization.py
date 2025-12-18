@@ -1428,4 +1428,274 @@ class Localization:
                 'it-IT' : 'Faccia allineata e scambiata',
                 'ja-JP' : 'アライン済の顔と合成される顔',
                 'de-DE' : 'Ausgerichtete und getauschte Gesichter'},
+
+    'VirtualCameraOutput.output_target.label':{
+                'en-US' : 'Output target',
+                'ru-RU' : 'Цель вывода',
+                'zh-CN' : '输出目标',
+                'es-ES' : 'Destino de salida',
+                'it-IT' : 'Destinazione di output',
+                'ja-JP' : '出力先',
+                'de-DE' : 'Ausgabeziel'},
+
+    'VirtualCameraOutput.output_target.help':{
+                'en-US' : 'Choose where to send frames.',
+                'ru-RU' : 'Выберите место назначения кадров.',
+                'zh-CN' : '选择帧的输出位置。',
+                'es-ES' : 'Elija dónde enviar los fotogramas.',
+                'it-IT' : 'Scegli dove inviare i frame.',
+                'ja-JP' : 'フレームの送信先を選択します。',
+                'de-DE' : 'Wählen Sie, wohin die Frames gesendet werden sollen.'},
+
+    'VirtualCameraOutput.output_target.file':{
+                'en-US' : 'File / UDP only',
+                'ru-RU' : 'Только файл / UDP',
+                'zh-CN' : '仅文件/UDP',
+                'es-ES' : 'Solo archivo/UDP',
+                'it-IT' : 'Solo file/UDP',
+                'ja-JP' : 'ファイル/UDPのみ',
+                'de-DE' : 'Nur Datei/UDP'},
+
+    'VirtualCameraOutput.output_target.virtual':{
+                'en-US' : 'Virtual camera only',
+                'ru-RU' : 'Только виртуальная камера',
+                'zh-CN' : '仅虚拟摄像头',
+                'es-ES' : 'Solo cámara virtual',
+                'it-IT' : 'Solo videocamera virtuale',
+                'ja-JP' : 'バーチャルカメラのみ',
+                'de-DE' : 'Nur virtuelle Kamera'},
+
+    'VirtualCameraOutput.output_target.both':{
+                'en-US' : 'File/UDP and virtual camera',
+                'ru-RU' : 'Файл/UDP и виртуальная камера',
+                'zh-CN' : '文件/UDP 与虚拟摄像头',
+                'es-ES' : 'Archivo/UDP y cámara virtual',
+                'it-IT' : 'File/UDP e videocamera virtuale',
+                'ja-JP' : 'ファイル/UDPとバーチャルカメラ',
+                'de-DE' : 'Datei/UDP und virtuelle Kamera'},
+
+    'VirtualCameraOutput.output_enabled':{
+                'en-US' : 'Enable virtual camera output',
+                'ru-RU' : 'Включить вывод в виртуальную камеру',
+                'zh-CN' : '启用虚拟摄像头输出',
+                'es-ES' : 'Habilitar salida de cámara virtual',
+                'it-IT' : 'Abilita uscita videocamera virtuale',
+                'ja-JP' : 'バーチャルカメラ出力を有効化',
+                'de-DE' : 'Virtuelle Kameraausgabe aktivieren'},
+
+    'VirtualCameraOutput.device':{
+                'en-US' : 'Virtual camera device',
+                'ru-RU' : 'Устройство виртуальной камеры',
+                'zh-CN' : '虚拟摄像头设备',
+                'es-ES' : 'Dispositivo de cámara virtual',
+                'it-IT' : 'Dispositivo videocamera virtuale',
+                'ja-JP' : 'バーチャルカメラデバイス',
+                'de-DE' : 'Virtuelles Kameragerät'},
+
+    'VirtualCameraOutput.device.help':{
+                'en-US' : 'Choose pyvirtualcam or OBS Virtual Camera device.',
+                'ru-RU' : 'Выберите устройство pyvirtualcam или OBS Virtual Camera.',
+                'zh-CN' : '选择 pyvirtualcam 或 OBS 虚拟摄像头设备。',
+                'es-ES' : 'Seleccione el dispositivo de pyvirtualcam u OBS Virtual Camera.',
+                'it-IT' : 'Seleziona dispositivo pyvirtualcam o OBS Virtual Camera.',
+                'ja-JP' : 'pyvirtualcam または OBS Virtual Camera のデバイスを選択します。',
+                'de-DE' : 'Wählen Sie ein pyvirtualcam- oder OBS-Virtual-Camera-Gerät aus.'},
+
+    'VirtualCameraOutput.resolution':{
+                'en-US' : 'Resolution (0=auto)',
+                'ru-RU' : 'Разрешение (0=авто)',
+                'zh-CN' : '分辨率（0=自动）',
+                'es-ES' : 'Resolución (0=auto)',
+                'it-IT' : 'Risoluzione (0=auto)',
+                'ja-JP' : '解像度（0=自動）',
+                'de-DE' : 'Auflösung (0=Auto)'},
+
+    'VirtualCameraOutput.fps_limit':{
+                'en-US' : 'FPS limit (0=auto)',
+                'ru-RU' : 'Ограничение FPS (0=авто)',
+                'zh-CN' : '帧率限制（0=自动）',
+                'es-ES' : 'Límite de FPS (0=auto)',
+                'it-IT' : 'Limite FPS (0=auto)',
+                'ja-JP' : 'FPS上限（0=自動）',
+                'de-DE' : 'FPS-Limit (0=Auto)'},
+
+    'VirtualCameraOutput.avg_fps':{
+                'en-US' : 'Virtual camera FPS',
+                'ru-RU' : 'FPS виртуальной камеры',
+                'zh-CN' : '虚拟摄像头帧率',
+                'es-ES' : 'FPS de cámara virtual',
+                'it-IT' : 'FPS videocamera virtuale',
+                'ja-JP' : 'バーチャルカメラFPS',
+                'de-DE' : 'FPS der virtuellen Kamera'},
+
+    'VirtualCameraOutput.status.stopped':{
+                'en-US' : 'Virtual camera stopped',
+                'ru-RU' : 'Виртуальная камера остановлена',
+                'zh-CN' : '虚拟摄像头已停止',
+                'es-ES' : 'Cámara virtual detenida',
+                'it-IT' : 'Videocamera virtuale ferma',
+                'ja-JP' : 'バーチャルカメラ停止',
+                'de-DE' : 'Virtuelle Kamera gestoppt'},
+
+    'VirtualCameraOutput.status.disabled':{
+                'en-US' : 'Virtual camera disabled',
+                'ru-RU' : 'Виртуальная камера отключена',
+                'zh-CN' : '虚拟摄像头已禁用',
+                'es-ES' : 'Cámara virtual deshabilitada',
+                'it-IT' : 'Videocamera virtuale disabilitata',
+                'ja-JP' : 'バーチャルカメラ無効',
+                'de-DE' : 'Virtuelle Kamera deaktiviert'},
+
+    'VirtualCameraOutput.status.default_device':{
+                'en-US' : 'Default device',
+                'ru-RU' : 'Устройство по умолчанию',
+                'zh-CN' : '默认设备',
+                'es-ES' : 'Dispositivo predeterminado',
+                'it-IT' : 'Dispositivo predefinito',
+                'ja-JP' : 'デフォルトデバイス',
+                'de-DE' : 'Standardgerät'},
+
+    'VirtualCameraOutput.status.running':{
+                'en-US' : 'Virtual camera running',
+                'ru-RU' : 'Виртуальная камера работает',
+                'zh-CN' : '虚拟摄像头运行中',
+                'es-ES' : 'Cámara virtual en ejecución',
+                'it-IT' : 'Videocamera virtuale in esecuzione',
+                'ja-JP' : 'バーチャルカメラ実行中',
+                'de-DE' : 'Virtuelle Kamera läuft'},
+
+    'VirtualCameraOutput.status.ready':{
+                'en-US' : 'pyvirtualcam available',
+                'ru-RU' : 'pyvirtualcam доступна',
+                'zh-CN' : 'pyvirtualcam 可用',
+                'es-ES' : 'pyvirtualcam disponible',
+                'it-IT' : 'pyvirtualcam disponibile',
+                'ja-JP' : 'pyvirtualcam を検出',
+                'de-DE' : 'pyvirtualcam verfügbar'},
+
+    'VirtualCameraOutput.status.error':{
+                'en-US' : 'Virtual camera error',
+                'ru-RU' : 'Ошибка виртуальной камеры',
+                'zh-CN' : '虚拟摄像头错误',
+                'es-ES' : 'Error de cámara virtual',
+                'it-IT' : 'Errore videocamera virtuale',
+                'ja-JP' : 'バーチャルカメラエラー',
+                'de-DE' : 'Fehler der virtuellen Kamera'},
+
+    'VirtualCameraOutput.error.missing_pyvirtualcam':{
+                'en-US' : 'pyvirtualcam is required. Install pyvirtualcam or OBS Virtual Camera.',
+                'ru-RU' : 'Требуется pyvirtualcam. Установите pyvirtualcam или OBS Virtual Camera.',
+                'zh-CN' : '需要 pyvirtualcam。请安装 pyvirtualcam 或 OBS Virtual Camera。',
+                'es-ES' : 'Se requiere pyvirtualcam. Instale pyvirtualcam u OBS Virtual Camera.',
+                'it-IT' : 'pyvirtualcam è richiesta. Installa pyvirtualcam o OBS Virtual Camera.',
+                'ja-JP' : 'pyvirtualcam が必要です。pyvirtualcam または OBS Virtual Camera をインストールしてください。',
+                'de-DE' : 'pyvirtualcam wird benötigt. Installieren Sie pyvirtualcam oder OBS Virtual Camera.'},
+
+    'VirtualCameraOutput.error.missing_pyvirtualcam_windows':{
+                'en-US' : 'Install pyvirtualcam (DirectShow/MediaFoundation) or enable OBS Virtual Camera on Windows.',
+                'ru-RU' : 'Установите pyvirtualcam (DirectShow/MediaFoundation) или включите OBS Virtual Camera в Windows.',
+                'zh-CN' : '请在 Windows 上安装 pyvirtualcam（DirectShow/MediaFoundation）或启用 OBS 虚拟摄像头。',
+                'es-ES' : 'Instale pyvirtualcam (DirectShow/MediaFoundation) o habilite OBS Virtual Camera en Windows.',
+                'it-IT' : 'Installa pyvirtualcam (DirectShow/MediaFoundation) o abilita OBS Virtual Camera su Windows.',
+                'ja-JP' : 'Windows では pyvirtualcam（DirectShow/MediaFoundation）をインストールするか、OBS Virtual Camera を有効にしてください。',
+                'de-DE' : 'Installieren Sie pyvirtualcam (DirectShow/MediaFoundation) oder aktivieren Sie OBS Virtual Camera unter Windows.'},
+
+    'VirtualCameraOutput.error.missing_pyvirtualcam_linux':{
+                'en-US' : 'Install pyvirtualcam and ensure v4l2loopback devices (/dev/video*) are available.',
+                'ru-RU' : 'Установите pyvirtualcam и убедитесь, что доступны устройства v4l2loopback (/dev/video*).',
+                'zh-CN' : '请安装 pyvirtualcam 并确保 v4l2loopback 设备 (/dev/video*) 可用。',
+                'es-ES' : 'Instale pyvirtualcam y asegúrese de que los dispositivos v4l2loopback (/dev/video*) estén disponibles.',
+                'it-IT' : 'Installa pyvirtualcam e assicurati che i dispositivi v4l2loopback (/dev/video*) siano disponibili.',
+                'ja-JP' : 'pyvirtualcam をインストールし、v4l2loopback デバイス (/dev/video*) が利用可能か確認してください。',
+                'de-DE' : 'Installieren Sie pyvirtualcam und stellen Sie sicher, dass v4l2loopback-Geräte (/dev/video*) verfügbar sind.'},
+
+    'VirtualCameraOutput.error.missing_pyvirtualcam_macos':{
+                'en-US' : 'Install pyvirtualcam (AVFoundation) or enable OBS Virtual Camera on macOS.',
+                'ru-RU' : 'Установите pyvirtualcam (AVFoundation) или включите OBS Virtual Camera на macOS.',
+                'zh-CN' : '请在 macOS 上安装 pyvirtualcam（AVFoundation）或启用 OBS 虚拟摄像头。',
+                'es-ES' : 'Instale pyvirtualcam (AVFoundation) o habilite OBS Virtual Camera en macOS.',
+                'it-IT' : 'Installa pyvirtualcam (AVFoundation) o abilita OBS Virtual Camera su macOS.',
+                'ja-JP' : 'macOS では pyvirtualcam（AVFoundation）をインストールするか、OBS Virtual Camera を有効にしてください。',
+                'de-DE' : 'Installieren Sie pyvirtualcam (AVFoundation) oder aktivieren Sie OBS Virtual Camera unter macOS.'},
+
+    'VirtualCameraOutput.error.no_v4l2loopback':{
+                'en-US' : 'No v4l2loopback video devices found. Load the module and create /dev/video* nodes.',
+                'ru-RU' : 'Устройства v4l2loopback не найдены. Загрузите модуль и создайте узлы /dev/video*.',
+                'zh-CN' : '未找到 v4l2loopback 设备。请加载模块并创建 /dev/video* 节点。',
+                'es-ES' : 'No se encontraron dispositivos v4l2loopback. Cargue el módulo y cree nodos /dev/video*.',
+                'it-IT' : 'Nessun dispositivo v4l2loopback trovato. Carica il modulo e crea i nodi /dev/video*.',
+                'ja-JP' : 'v4l2loopback デバイスが見つかりません。モジュールをロードし /dev/video* を作成してください。',
+                'de-DE' : 'Keine v4l2loopback-Geräte gefunden. Laden Sie das Modul und erstellen Sie /dev/video*-Knoten.'},
+
+    'VirtualCameraOutput.error.empty_frame':{
+                'en-US' : 'No frame available to send to the virtual camera.',
+                'ru-RU' : 'Нет кадра для отправки в виртуальную камеру.',
+                'zh-CN' : '没有可发送到虚拟摄像头的帧。',
+                'es-ES' : 'No hay fotograma disponible para enviar a la cámara virtual.',
+                'it-IT' : 'Nessun frame disponibile da inviare alla videocamera virtuale.',
+                'ja-JP' : 'バーチャルカメラに送るフレームがありません。',
+                'de-DE' : 'Kein Frame für die virtuelle Kamera verfügbar.'},
+
+    'VirtualCameraOutput.error.no_resolution':{
+                'en-US' : 'Unable to determine output resolution.',
+                'ru-RU' : 'Невозможно определить разрешение вывода.',
+                'zh-CN' : '无法确定输出分辨率。',
+                'es-ES' : 'No se puede determinar la resolución de salida.',
+                'it-IT' : 'Impossibile determinare la risoluzione di output.',
+                'ja-JP' : '出力解像度を特定できません。',
+                'de-DE' : 'Ausgabeauflösung kann nicht bestimmt werden.'},
+
+    'VirtualCameraOutput.state.unknown':{
+                'en-US' : 'Virtual camera state unknown',
+                'ru-RU' : 'Состояние виртуальной камеры неизвестно',
+                'zh-CN' : '虚拟摄像头状态未知',
+                'es-ES' : 'Estado de cámara virtual desconocido',
+                'it-IT' : 'Stato videocamera virtuale sconosciuto',
+                'ja-JP' : 'バーチャルカメラ状態不明',
+                'de-DE' : 'Unbekannter Zustand der virtuellen Kamera'},
+
+    'VirtualCameraOutput.state.stopped':{
+                'en-US' : 'Virtual camera stopped',
+                'ru-RU' : 'Виртуальная камера остановлена',
+                'zh-CN' : '虚拟摄像头已停止',
+                'es-ES' : 'Cámara virtual detenida',
+                'it-IT' : 'Videocamera virtuale ferma',
+                'ja-JP' : 'バーチャルカメラ停止',
+                'de-DE' : 'Virtuelle Kamera gestoppt'},
+
+    'VirtualCameraOutput.state.starting':{
+                'en-US' : 'Virtual camera starting',
+                'ru-RU' : 'Виртуальная камера запускается',
+                'zh-CN' : '虚拟摄像头正在启动',
+                'es-ES' : 'Cámara virtual iniciándose',
+                'it-IT' : 'Videocamera virtuale in avvio',
+                'ja-JP' : 'バーチャルカメラ起動中',
+                'de-DE' : 'Virtuelle Kamera startet'},
+
+    'VirtualCameraOutput.state.stopping':{
+                'en-US' : 'Virtual camera stopping',
+                'ru-RU' : 'Виртуальная камера останавливается',
+                'zh-CN' : '虚拟摄像头正在停止',
+                'es-ES' : 'Cámara virtual deteniéndose',
+                'it-IT' : 'Videocamera virtuale in arresto',
+                'ja-JP' : 'バーチャルカメラ停止中',
+                'de-DE' : 'Virtuelle Kamera stoppt'},
+
+    'VirtualCameraOutput.state.busy':{
+                'en-US' : 'Virtual camera busy',
+                'ru-RU' : 'Виртуальная камера занята',
+                'zh-CN' : '虚拟摄像头忙碌',
+                'es-ES' : 'Cámara virtual ocupada',
+                'it-IT' : 'Videocamera virtuale occupata',
+                'ja-JP' : 'バーチャルカメラ使用中',
+                'de-DE' : 'Virtuelle Kamera beschäftigt'},
+
+    'VirtualCameraOutput.state.started':{
+                'en-US' : 'Virtual camera started',
+                'ru-RU' : 'Виртуальная камера запущена',
+                'zh-CN' : '虚拟摄像头已启动',
+                'es-ES' : 'Cámara virtual iniciada',
+                'it-IT' : 'Videocamera virtuale avviata',
+                'ja-JP' : 'バーチャルカメラ開始',
+                'de-DE' : 'Virtuelle Kamera gestartet'},
     }
