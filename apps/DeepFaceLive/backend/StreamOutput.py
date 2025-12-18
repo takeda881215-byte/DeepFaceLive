@@ -55,6 +55,15 @@ ViewModeNames = ['@StreamOutput.SourceType.SOURCE_FRAME',
                  '@StreamOutput.SourceType.ALIGNED_N_SWAPPED_FACE',
                  ]
 
+class OutputTarget(IntEnum):
+    FILE_ONLY = 0
+    VIRTUAL_CAMERA = 1
+    FILE_AND_VIRTUAL = 2
+
+OutputTargetNames = ['@VirtualCameraOutput.output_target.file',
+                     '@VirtualCameraOutput.output_target.virtual',
+                     '@VirtualCameraOutput.output_target.both']
+
 
 
 class StreamOutputWorker(BackendWorker):
@@ -93,10 +102,18 @@ class StreamOutputWorker(BackendWorker):
         cs.is_streaming.call_on_flag(self.on_cs_is_streaming)
         cs.stream_addr.call_on_text(self.on_cs_stream_addr)
         cs.stream_port.call_on_number(self.on_cs_stream_port)
+        cs.output_target.call_on_selected(self.on_cs_output_target)
 
         cs.source_type.enable()
         cs.source_type.set_choices(SourceType, ViewModeNames, none_choice_name='@misc.menu_select')
         cs.source_type.select(state.source_type)
+
+        cs.output_target.enable()
+        cs.output_target.set_choices(OutputTarget, OutputTargetNames, none_choice_name=None)
+        output_target = state.output_target if state.output_target is not None else OutputTarget.FILE_ONLY
+        cs.output_target.select(output_target)
+        if state.is_file_output_enabled is None:
+            state.is_file_output_enabled = output_target != OutputTarget.VIRTUAL_CAMERA
 
         cs.target_delay.enable()
         cs.target_delay.set_config(lib_csw.Number.Config(min=0, max=5000, step=100, decimals=0, allow_instant_update=True))
@@ -146,6 +163,13 @@ class StreamOutputWorker(BackendWorker):
             cs.aligned_face_id.disable()
         state.source_type = source_type
 
+        self.save_state()
+        self.reemit_frame_signal.send()
+
+    def on_cs_output_target(self, idx, output_target: OutputTarget):
+        state, _ = self.get_state(), self.get_control_sheet()
+        state.output_target = output_target
+        state.is_file_output_enabled = output_target != OutputTarget.VIRTUAL_CAMERA
         self.save_state()
         self.reemit_frame_signal.send()
 
@@ -241,8 +265,8 @@ class StreamOutputWorker(BackendWorker):
             source_type = state.source_type
             if source_type is not None and \
                 (state.is_showing_window or \
-                 state.sequence_path is not None or \
-                 state.is_streaming):
+                 (state.is_file_output_enabled and (state.sequence_path is not None or \
+                                                    state.is_streaming)) ):
                 buffered_frames = self.buffered_frames
 
                 view_image = None
@@ -301,7 +325,7 @@ class StreamOutputWorker(BackendWorker):
                 if view_image is not None:
                     buffered_frames.add_buffer( bcd.get_frame_timestamp(), view_image )
 
-                    if state.sequence_path is not None:
+                    if state.sequence_path is not None and state.is_file_output_enabled:
                         img = ImageProcessor(view_image, copy=True).to_uint8().get_image('HWC')
 
                         file_ext, cv_args = '.jpg', [int(cv2.IMWRITE_JPEG_QUALITY), 100]
@@ -316,7 +340,7 @@ class StreamOutputWorker(BackendWorker):
 
                 img = pr.new_data
                 if img is not None:
-                    if state.is_streaming:
+                    if state.is_streaming and state.is_file_output_enabled:
                         img = ImageProcessor(view_image).to_uint8().get_image('HWC')
                         self._streamer.push_frame(img)
 
@@ -331,6 +355,7 @@ class Sheet:
         def __init__(self):
             super().__init__()
             self.source_type = lib_csw.DynamicSingleSwitch.Client()
+            self.output_target = lib_csw.DynamicSingleSwitch.Client()
             self.aligned_face_id = lib_csw.Number.Client()
             self.target_delay = lib_csw.Number.Client()
             self.avg_fps = lib_csw.Number.Client()
@@ -346,6 +371,7 @@ class Sheet:
         def __init__(self):
             super().__init__()
             self.source_type = lib_csw.DynamicSingleSwitch.Host()
+            self.output_target = lib_csw.DynamicSingleSwitch.Host()
             self.aligned_face_id = lib_csw.Number.Host()
             self.target_delay = lib_csw.Number.Host()
             self.avg_fps = lib_csw.Number.Host()
@@ -359,6 +385,7 @@ class Sheet:
 
 class WorkerState(BackendWorkerState):
     source_type : SourceType = None
+    output_target : OutputTarget = None
     is_showing_window : bool = None
     aligned_face_id : int = None
     target_delay : int = None
@@ -367,3 +394,4 @@ class WorkerState(BackendWorkerState):
     is_streaming : bool = None
     stream_addr : str = None
     stream_port : int = None
+    is_file_output_enabled : bool = None
