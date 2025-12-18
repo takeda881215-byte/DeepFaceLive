@@ -303,6 +303,8 @@ The pinned versions mirror the Linux Docker image and include GPU-enabled ONNX R
 
 `pyvirtualcam` is bundled to enable the virtual camera output; install your platform's virtual camera driver (for example, `v4l2loopback` on Linux) if you plan to stream frames into other apps.
 
+Set the `DEEPFACELIVE_USERDATA` environment variable to override the default userdata directory if you want to keep app data in a custom location (the legacy `DEEPLIVELIVE_USERDATA` variable is still honored for backward compatibility).
+
 </td></tr>
 <tr><td colspan=2 align="center">
 
@@ -403,4 +405,3 @@ bitcoin:bc1qewl062v70rszulml3f0mjdjrys8uxdydw3v6rq
 -->
 
 </table>
-
