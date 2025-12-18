@@ -1,4 +1,7 @@
-from collections import Iterable
+try:
+    from collections.abc import Iterable
+except ImportError:
+    from collections import Iterable
 import math
 
 class Conv2DInfo:
@@ -74,5 +77,4 @@ class Conv2DInfo:
         self.OW = max(1, int((W + PADL + PADR - EKW) / stride + 1) )
         self.OH_T = OH_T
         self.OW_T = OW_T
-
 
