@@ -58,6 +58,7 @@ class VirtualCameraOutputWorker(BackendWorker):
         self._fps_counter = lib_time.FPSCounter()
         self._last_fps_value = 0.0
         self._pending_bcd = None
+        self._auto_camera_attempted = False
 
         state, cs = self.get_state(), self.get_control_sheet()
 
@@ -85,6 +86,9 @@ class VirtualCameraOutputWorker(BackendWorker):
         cs.output_enabled.set_flag(state.output_enabled if state.output_enabled is not None else False)
 
         cs.device.enable()
+        devices = self._refresh_devices()
+        if state.device_name is None and len(devices) > 0:
+            state.device_name = devices[0]
         self._refresh_devices()
         if state.device_name is not None:
             cs.device.select(state.device_name)
@@ -271,6 +275,11 @@ class VirtualCameraOutputWorker(BackendWorker):
         if not self._check_platform_requirements():
             return False
 
+        if device_name is None and not self._auto_camera_attempted:
+            # Try default virtual cam creation (if driver present) once.
+            self._auto_camera_attempted = True
+            device_name = None
+
         cfg_device, cfg_w, cfg_h, cfg_fps = self._camera_cfg
         if self._camera is not None and (cfg_device != device_name or cfg_w != width or cfg_h != height or cfg_fps != fps):
             self._close_camera()
@@ -312,10 +321,13 @@ class VirtualCameraOutputWorker(BackendWorker):
             device_names = [str(p) for p in Path('/dev').glob('video*')]
 
         cs.device.set_choices(device_names, none_choice_name='@misc.menu_select')
+        if len(device_names) > 0:
+            self._auto_camera_attempted = False
 
         if state.device_name is not None and state.device_name not in device_names:
             state.device_name = None
             self.save_state()
+        return device_names
 
     def _resolve_resolution(self, state: 'WorkerState', source_w: int, source_h: int) -> Tuple[Optional[int], Optional[int]]:
         width = state.width if state.width not in [None, 0] else source_w
