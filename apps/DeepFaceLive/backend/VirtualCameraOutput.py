@@ -89,6 +89,7 @@ class VirtualCameraOutputWorker(BackendWorker):
         devices = self._refresh_devices()
         if state.device_name is None and len(devices) > 0:
             state.device_name = devices[0]
+        self._refresh_devices()
         if state.device_name is not None:
             cs.device.select(state.device_name)
 
