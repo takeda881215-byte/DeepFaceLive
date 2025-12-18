@@ -290,6 +290,22 @@ Windows 10
 </td></tr>
 <tr><td colspan=2 align="center">
 
+## Python dependencies
+
+If you prefer running the application from source instead of the prebuilt releases, install the Python runtime dependencies before launching `main.py`:
+
+```
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+The pinned versions mirror the Linux Docker image and include GPU-enabled ONNX Runtime and a CUDA-enabled PyTorch build. Replace `onnxruntime-gpu` with `onnxruntime` or adjust the PyTorch build if you do not have CUDA available.
+
+`pyvirtualcam` is bundled to enable the virtual camera output; install your platform's virtual camera driver (for example, `v4l2loopback` on Linux) if you plan to stream frames into other apps.
+
+</td></tr>
+<tr><td colspan=2 align="center">
+
 ## Documentation
 
 </td></tr>
@@ -387,6 +403,4 @@ bitcoin:bc1qewl062v70rszulml3f0mjdjrys8uxdydw3v6rq
 -->
 
 </table>
-
-
 
