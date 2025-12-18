@@ -1,7 +1,30 @@
 #!/bin/bash
 
-NV_LIB=$(locate nvidia.ko |grep $(uname -r) |grep dkms | head -1)
-NV_VER=$(modinfo $NV_LIB | grep ^version |awk '{print $2}'|awk -F '.' '{print $1}')
+get_nv_version() {
+    if [ -r /proc/driver/nvidia/version ]; then
+        PROC_VER=$(grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' /proc/driver/nvidia/version | head -1)
+        if [ -n "$PROC_VER" ]; then
+            echo "$PROC_VER"
+            return 0
+        fi
+    fi
+
+    if command -v modinfo >/dev/null 2>&1; then
+        MODINFO_VER=$(modinfo nvidia 2>/dev/null | awk '/^version:/ {print $2; exit}')
+        if [ -n "$MODINFO_VER" ]; then
+            echo "$MODINFO_VER"
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+NV_VERSION=$(get_nv_version) || {
+    echo "Error: Unable to determine NVIDIA driver version. Ensure NVIDIA drivers are installed." >&2
+    exit 1
+}
+NV_VER=$(echo "$NV_VERSION" | awk -F '.' '{print $1}')
 
 DATA_FOLDER=$(pwd)/data/
 declare CAM0 CAM1 CAM2 CAM3
