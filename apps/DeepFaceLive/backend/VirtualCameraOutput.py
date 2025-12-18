@@ -25,13 +25,14 @@ class VirtualCameraOutput(BackendHost):
     def __init__(self, weak_heap: BackendWeakHeap,
                        reemit_frame_signal: BackendSignal,
                        bc_in: BackendConnection,
+                       bc_out: BackendConnection,
                        backend_db: BackendDB = None):
 
         super().__init__(backend_db=backend_db,
                          sheet_cls=Sheet,
                          worker_cls=VirtualCameraOutputWorker,
                          worker_state_cls=WorkerState,
-                         worker_start_args=[weak_heap, reemit_frame_signal, bc_in])
+                         worker_start_args=[weak_heap, reemit_frame_signal, bc_in, bc_out])
 
     def get_control_sheet(self) -> 'Sheet.Host': return super().get_control_sheet()
 
@@ -42,10 +43,12 @@ class VirtualCameraOutputWorker(BackendWorker):
 
     def on_start(self, weak_heap: BackendWeakHeap,
                        reemit_frame_signal: BackendSignal,
-                       bc_in: BackendConnection):
+                       bc_in: BackendConnection,
+                       bc_out: BackendConnection):
         self.weak_heap = weak_heap
         self.reemit_frame_signal = reemit_frame_signal
         self.bc_in = bc_in
+        self.bc_out = bc_out
 
         self._pyvirtualcam = None
         self._pyvirtualcam_checked = False
@@ -54,6 +57,7 @@ class VirtualCameraOutputWorker(BackendWorker):
         self._frame_queue = deque(maxlen=3)
         self._fps_counter = lib_time.FPSCounter()
         self._last_fps_value = 0.0
+        self._pending_bcd = None
 
         state, cs = self.get_state(), self.get_control_sheet()
 
@@ -170,8 +174,10 @@ class VirtualCameraOutputWorker(BackendWorker):
             frame = self._extract_frame(bcd, state)
             if frame is not None and state.output_enabled:
                 self._frame_queue.append((frame, bcd.get_frame_fps()))
+            self._pending_bcd = bcd
 
         self._drain_queue()
+        self._forward_pending_bcd()
 
     def _drain_queue(self):
         state, cs = self.get_state(), self.get_control_sheet()
@@ -217,6 +223,14 @@ class VirtualCameraOutputWorker(BackendWorker):
             self._set_status('@VirtualCameraOutput.status.error')
             cs.error.set_error(str(e))
             self._close_camera()
+
+    def _forward_pending_bcd(self):
+        if self._pending_bcd is None or self.bc_out is None:
+            return
+
+        if self.bc_out.is_full_read(1):
+            self.bc_out.write(self._pending_bcd)
+            self._pending_bcd = None
 
     def _ensure_pyvirtualcam(self) -> bool:
         if self._pyvirtualcam_checked:
